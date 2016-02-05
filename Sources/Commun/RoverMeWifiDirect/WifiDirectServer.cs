@@ -71,8 +71,6 @@ namespace RoverMeWifiDirect
                     var tcsWiFiDirectDevice = new TaskCompletionSource<WiFiDirectDevice>();
                     var wfdDeviceTask = tcsWiFiDirectDevice.Task;
 
-                    await Task.Run( async () =>
-                    {
                         try
                         {
                             Debug.WriteLine("Connecting to " + connectionRequest.DeviceInformation.Name + "...");
@@ -87,7 +85,6 @@ namespace RoverMeWifiDirect
                         {
                             Debug.WriteLine("FromIdAsync task threw an exception: " + ex.ToString());
                         }
-                    });
 
                     WiFiDirectDevice wfdDevice = await wfdDeviceTask;
 
