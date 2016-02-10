@@ -8,6 +8,15 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button Content="BottomLeft" HorizontalAlignment="Left" Margin="324,632,0,0" VerticalAlignment="Top" Height="62" Width="223"/>
+        <Button Content="TopLeft" HorizontalAlignment="Left" Margin="324,468,0,0" VerticalAlignment="Top" Height="62" Width="223"/>
+        <Button Content="STOP" HorizontalAlignment="Left" Margin="564,553,0,0" VerticalAlignment="Top" Height="62" Width="224"/>
+        <Button Content="TopRight" HorizontalAlignment="Left" Margin="805,468,0,0" VerticalAlignment="Top" Height="62" Width="223"/>
+        <Button Content="BottomRight" HorizontalAlignment="Left" Margin="805,632,0,0" VerticalAlignment="Top" Height="62" Width="223"/>
+        <Button Content="Forward" HorizontalAlignment="Left" Margin="564,468,0,0" VerticalAlignment="Top" Height="62" Width="224"/>
+        <Button Content="Left" HorizontalAlignment="Left" Margin="324,553,0,0" VerticalAlignment="Top" Height="62" Width="224"/>
+        <Button Content="Right" HorizontalAlignment="Left" Margin="805,553,0,0" VerticalAlignment="Top" Height="62" Width="224"/>
+        <Button Content="Backward" HorizontalAlignment="Left" Margin="564,632,0,0" VerticalAlignment="Top" Height="62" Width="224"/>
 
     </Grid>
 </Page>
