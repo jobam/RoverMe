@@ -107,10 +107,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectedDevice.cs" />
-    <Compile Include="DiscoveredDevice.cs" />
-    <Compile Include="SocketReaderWriter.cs" />
-    <Compile Include="WifiDirectServer.cs" />
+    <Compile Include="WifiDirect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\RoverMeWifiDirect.rd.xml" />
   </ItemGroup>

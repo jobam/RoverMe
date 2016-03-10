@@ -132,15 +132,29 @@ namespace CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[3];
+            _typeNameTable = new string[10];
             _typeNameTable[0] = "CommonLibraryTesting.MainPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[3] = "System.Collections.Generic.List`1<Windows.Networking.Proximity.PeerInformation>";
+            _typeNameTable[4] = "Object";
+            _typeNameTable[5] = "Windows.Networking.Proximity.PeerInformation";
+            _typeNameTable[6] = "String";
+            _typeNameTable[7] = "Windows.Storage.Streams.IBuffer";
+            _typeNameTable[8] = "Windows.Networking.HostName";
+            _typeNameTable[9] = "RoverMeWifiDirect.WifiDirect";
 
-            _typeTable = new global::System.Type[3];
+            _typeTable = new global::System.Type[10];
             _typeTable[0] = typeof(global::CommonLibraryTesting.MainPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[3] = typeof(global::System.Collections.Generic.List<global::Windows.Networking.Proximity.PeerInformation>);
+            _typeTable[4] = typeof(global::System.Object);
+            _typeTable[5] = typeof(global::Windows.Networking.Proximity.PeerInformation);
+            _typeTable[6] = typeof(global::System.String);
+            _typeTable[7] = typeof(global::Windows.Storage.Streams.IBuffer);
+            _typeTable[8] = typeof(global::Windows.Networking.HostName);
+            _typeTable[9] = typeof(global::RoverMeWifiDirect.WifiDirect);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -176,6 +190,13 @@ namespace CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo
         }
 
         private object Activate_0_MainPage() { return new global::CommonLibraryTesting.MainPage(); }
+        private object Activate_3_List() { return new global::System.Collections.Generic.List<global::Windows.Networking.Proximity.PeerInformation>(); }
+        private void VectorAdd_3_List(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Windows.Networking.Proximity.PeerInformation>)instance;
+            var newItem = (global::Windows.Networking.Proximity.PeerInformation)item;
+            collection.Add(newItem);
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -190,6 +211,8 @@ namespace CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo
             case 0:   //  CommonLibraryTesting.MainPage
                 userType = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
                 userType.Activator = Activate_0_MainPage;
+                userType.AddMemberName("Peers");
+                userType.AddMemberName("WD");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -201,16 +224,150 @@ namespace CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo
             case 2:   //  Windows.UI.Xaml.Controls.UserControl
                 xamlType = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
+
+            case 3:   //  System.Collections.Generic.List`1<Windows.Networking.Proximity.PeerInformation>
+                userType = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.CollectionAdd = VectorAdd_3_List;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 4:   //  Object
+                xamlType = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 5:   //  Windows.Networking.Proximity.PeerInformation
+                userType = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.AddMemberName("DisplayName");
+                userType.AddMemberName("DiscoveryData");
+                userType.AddMemberName("Id");
+                userType.AddMemberName("HostName");
+                userType.AddMemberName("ServiceName");
+                xamlType = userType;
+                break;
+
+            case 6:   //  String
+                xamlType = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 7:   //  Windows.Storage.Streams.IBuffer
+                userType = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 8:   //  Windows.Networking.HostName
+                userType = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 9:   //  RoverMeWifiDirect.WifiDirect
+                userType = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
             }
             return xamlType;
         }
 
 
+        private object get_0_MainPage_Peers(object instance)
+        {
+            var that = (global::CommonLibraryTesting.MainPage)instance;
+            return that.Peers;
+        }
+        private void set_0_MainPage_Peers(object instance, object Value)
+        {
+            var that = (global::CommonLibraryTesting.MainPage)instance;
+            that.Peers = (global::System.Collections.Generic.List<global::Windows.Networking.Proximity.PeerInformation>)Value;
+        }
+        private object get_1_PeerInformation_DisplayName(object instance)
+        {
+            var that = (global::Windows.Networking.Proximity.PeerInformation)instance;
+            return that.DisplayName;
+        }
+        private object get_2_PeerInformation_DiscoveryData(object instance)
+        {
+            var that = (global::Windows.Networking.Proximity.PeerInformation)instance;
+            return that.DiscoveryData;
+        }
+        private object get_3_PeerInformation_Id(object instance)
+        {
+            var that = (global::Windows.Networking.Proximity.PeerInformation)instance;
+            return that.Id;
+        }
+        private object get_4_PeerInformation_HostName(object instance)
+        {
+            var that = (global::Windows.Networking.Proximity.PeerInformation)instance;
+            return that.HostName;
+        }
+        private object get_5_PeerInformation_ServiceName(object instance)
+        {
+            var that = (global::Windows.Networking.Proximity.PeerInformation)instance;
+            return that.ServiceName;
+        }
+        private object get_6_MainPage_WD(object instance)
+        {
+            var that = (global::CommonLibraryTesting.MainPage)instance;
+            return that.WD;
+        }
+        private void set_6_MainPage_WD(object instance, object Value)
+        {
+            var that = (global::CommonLibraryTesting.MainPage)instance;
+            that.WD = (global::RoverMeWifiDirect.WifiDirect)Value;
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
         {
             global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlMember xamlMember = null;
-            // No Local Properties
+            global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType userType;
+
+            switch (longMemberName)
+            {
+            case "CommonLibraryTesting.MainPage.Peers":
+                userType = (global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType)GetXamlTypeByName("CommonLibraryTesting.MainPage");
+                xamlMember = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlMember(this, "Peers", "System.Collections.Generic.List`1<Windows.Networking.Proximity.PeerInformation>");
+                xamlMember.Getter = get_0_MainPage_Peers;
+                xamlMember.Setter = set_0_MainPage_Peers;
+                break;
+            case "Windows.Networking.Proximity.PeerInformation.DisplayName":
+                userType = (global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Windows.Networking.Proximity.PeerInformation");
+                xamlMember = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlMember(this, "DisplayName", "String");
+                xamlMember.Getter = get_1_PeerInformation_DisplayName;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Windows.Networking.Proximity.PeerInformation.DiscoveryData":
+                userType = (global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Windows.Networking.Proximity.PeerInformation");
+                xamlMember = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlMember(this, "DiscoveryData", "Windows.Storage.Streams.IBuffer");
+                xamlMember.Getter = get_2_PeerInformation_DiscoveryData;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Windows.Networking.Proximity.PeerInformation.Id":
+                userType = (global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Windows.Networking.Proximity.PeerInformation");
+                xamlMember = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlMember(this, "Id", "String");
+                xamlMember.Getter = get_3_PeerInformation_Id;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Windows.Networking.Proximity.PeerInformation.HostName":
+                userType = (global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Windows.Networking.Proximity.PeerInformation");
+                xamlMember = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlMember(this, "HostName", "Windows.Networking.HostName");
+                xamlMember.Getter = get_4_PeerInformation_HostName;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Windows.Networking.Proximity.PeerInformation.ServiceName":
+                userType = (global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Windows.Networking.Proximity.PeerInformation");
+                xamlMember = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlMember(this, "ServiceName", "String");
+                xamlMember.Getter = get_5_PeerInformation_ServiceName;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "CommonLibraryTesting.MainPage.WD":
+                userType = (global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlUserType)GetXamlTypeByName("CommonLibraryTesting.MainPage");
+                xamlMember = new global::CommonLibraryTesting.CommonLibraryTesting_XamlTypeInfo.XamlMember(this, "WD", "RoverMeWifiDirect.WifiDirect");
+                xamlMember.Getter = get_6_MainPage_WD;
+                xamlMember.Setter = set_6_MainPage_WD;
+                break;
+            }
             return xamlMember;
         }
     }

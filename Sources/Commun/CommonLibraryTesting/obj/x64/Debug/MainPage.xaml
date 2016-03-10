@@ -8,12 +8,13 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,-775,-54">
-        <Button x:ConnectionId='1' x:Name="btnStartServer" Content="Start Server" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Height="62" Width="117"                               />
-        <TextBlock x:ConnectionId='2' x:Name="textBlock" HorizontalAlignment="Left" Margin="10,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="27" Width="114">
-        	<Run Text="server status"/>
-        	<Run Text=": "/>
-        </TextBlock>
-        <TextBlock x:ConnectionId='3' x:Name="txtStatus" HorizontalAlignment="Left" Margin="124,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="209" Foreground="#FF0B7815"/>
+        <Button x:ConnectionId='1' x:Name="serverButton" Content="Find Peers" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top"                           />
+        <ComboBox x:ConnectionId='2' x:Name="comboBox" HorizontalAlignment="Left" Margin="46,45,0,0" VerticalAlignment="Top" Width="224" ItemsSource="{Binding}" DisplayMemberPath="DisplayName">
+
+        </ComboBox>
+        <Button x:ConnectionId='3' x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Margin="152,158,0,0" VerticalAlignment="Top"                              />
+
+        <TextBlock x:ConnectionId='4' x:Name="txtStatus" HorizontalAlignment="Left" Margin="296,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="209" Foreground="#FF0B7815"/>
 
     </Grid>
 </Page>
