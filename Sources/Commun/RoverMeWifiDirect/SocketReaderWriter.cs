@@ -22,7 +22,7 @@ namespace RoverMeWifiDirect
         public static readonly byte CustomOuiType = 0xDD;
         public static readonly byte[] WfaOui = { 0x50, 0x6F, 0x9A };
         public static readonly byte[] MsftOui = { 0x00, 0x50, 0xF2 };
-        public static readonly string strServerPort = "50001";
+        public static readonly string strServerPort = "4242";
     }
 
     public class SocketReaderWriter : IDisposable

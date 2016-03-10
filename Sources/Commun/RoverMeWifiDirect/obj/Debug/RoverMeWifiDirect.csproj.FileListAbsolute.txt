@@ -1,0 +1,17 @@
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\bin\Debug\RoverMeWifiDirect.dll
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\bin\Debug\RoverMeWifiDirect.pdb
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\bin\Debug\RoverMeWifiDirect.pri
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\RoverMeWifiDirect.csprojResolveAssemblyReference.cache
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\RoverMeWifiDirect.dll
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\RoverMeWifiDirect.pdb
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\priconfig.xml
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\priconfig.xml.intermediate
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\layout.resfiles
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\layout.resfiles.intermediate
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\resources.resfiles
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\resources.resfiles.intermediate
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\pri.resfiles
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\pri.resfiles.intermediate
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\qualifiers.txt
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\qualifiers.txt.intermediate
+C:\Users\jonathan\Documents\projets\roverme\Sources\Commun\RoverMeWifiDirect\obj\Debug\MultipleQualifiersPerDimensionFound.txt

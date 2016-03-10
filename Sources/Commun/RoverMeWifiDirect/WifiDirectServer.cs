@@ -1,17 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//*********************************************************
+//
+// Made by Abraham Jonathan
+//      04/02/2016
+//
+//*********************************************************
+
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 using Windows.Devices.WiFiDirect;
 using Windows.Networking.Sockets;
+using Windows.UI.Core;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Windows.Storage.Streams;
+using Windows.Devices.Enumeration;
+using Windows.UI.Popups;
+using System.Collections.Generic;
+using System;
+using System.Diagnostics;
 
 namespace RoverMeWifiDirect
 {
+    /**
+     ** To listen to comming messages,
+     ** Subscribe to the _connectedDevices[X].socketRW.ReceivedMessageEvent Event
+    **/
+
     public class WifiDirectServer
     {
+        #region Events to Subscribe
+
+        public delegate void ConnectedDeviceDelegte(string deviceName);
+        public event ConnectedDeviceDelegte ConnectedDeviceEvent;
+
+        #endregion
+
         #region Attributes
         public ObservableCollection<ConnectedDevice> _connectedDevices
         {
@@ -24,12 +47,13 @@ namespace RoverMeWifiDirect
 
         #endregion
 
+        #region Cycle
+
         public WifiDirectServer()
         {
             _connectedDevices = new ObservableCollection<ConnectedDevice>();
             _listenerSocket = null;
         }
-
 
         public void StartServer()
         {
@@ -56,11 +80,13 @@ namespace RoverMeWifiDirect
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error starting Advertisement: " + ex.ToString());
+                Debug.WriteLine("Error starting Advertisement: " + ex.Message, "Error");
             }
         }
 
-        #region Helpers
+        #endregion
+
+        #region Catch
 
         private async void OnConnectionRequested(WiFiDirectConnectionListener sender, WiFiDirectConnectionRequestedEventArgs connectionEventArgs)
         {
@@ -68,55 +94,97 @@ namespace RoverMeWifiDirect
             {
                 var connectionRequest = connectionEventArgs.GetConnectionRequest();
 
-                    var tcsWiFiDirectDevice = new TaskCompletionSource<WiFiDirectDevice>();
-                    var wfdDeviceTask = tcsWiFiDirectDevice.Task;
+                var tcsWiFiDirectDevice = new TaskCompletionSource<WiFiDirectDevice>();
+                var wfdDeviceTask = tcsWiFiDirectDevice.Task;
 
-                        try
-                        {
-                            Debug.WriteLine("Connecting to " + connectionRequest.DeviceInformation.Name + "...");
+                //setting task actions
 
-                            WiFiDirectConnectionParameters connectionParams = new WiFiDirectConnectionParameters();
-                            connectionParams.GroupOwnerIntent = Convert.ToInt16("0"); // must be set if mutiple devices ?
-
-                            // IMPORTANT: FromIdAsync needs to be called from the UI thread
-                            tcsWiFiDirectDevice.SetResult(await WiFiDirectDevice.FromIdAsync(connectionRequest.DeviceInformation.Id, connectionParams));
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine("FromIdAsync task threw an exception: " + ex.ToString());
-                        }
-
-                    WiFiDirectDevice wfdDevice = await wfdDeviceTask;
-
-                    // Register for the ConnectionStatusChanged event handler
-                    wfdDevice.ConnectionStatusChanged += OnConnectionStatusChanged;
-
-                    await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
-                    {
-                        ConnectedDevice connectedDevice = new ConnectedDevice("Waiting for client to connect...", wfdDevice, null);
-                        _connectedDevices.Add(connectedDevice);
-                    });
-
-                    var EndpointPairs = wfdDevice.GetConnectionEndpointPairs();
-
-                    _listenerSocket = null;
-                    _listenerSocket = new StreamSocketListener();
-                    _listenerSocket.ConnectionReceived += OnSocketConnectionReceived;
-                    await _listenerSocket.BindEndpointAsync(EndpointPairs[0].LocalHostName, Globals.strServerPort);
-
-                    rootPage.NotifyUserFromBackground("Devices connected on L2, listening on IP Address: " + EndpointPairs[0].LocalHostName.ToString() +
-                                            " Port: " + Globals.strServerPort, NotifyType.StatusMessage);
-                }
-                else
+                try
                 {
-                    // Decline the connection request
-                    rootPage.NotifyUserFromBackground("Connection request from " + connectionRequest.DeviceInformation.Name + " was declined", NotifyType.ErrorMessage);
-                    connectionRequest.Dispose();
+                        Debug.WriteLine("Connecting to " + connectionRequest.DeviceInformation.Name + "...");
+
+                        WiFiDirectConnectionParameters connectionParams = new WiFiDirectConnectionParameters();
+                        connectionParams.GroupOwnerIntent = Convert.ToInt16("0"); // must be set if mutiple devices ?
+
+                        // IMPORTANT: FromIdAsync needs to be called from the UI thread
+                        tcsWiFiDirectDevice.SetResult(
+                            await WiFiDirectDevice.FromIdAsync(connectionRequest.DeviceInformation.Id, connectionParams));
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("FromIdAsync task threw an exception: " + ex.Message, "Error");
+                    throw;
+                }
+
+                // getting device
+                WiFiDirectDevice wfdDevice = await wfdDeviceTask;
+
+                // Register for the ConnectionStatusChanged event handler
+                //wfdDevice.ConnectionStatusChanged += OnConnectionStatusChanged;
+
+                ConnectedDevice connectedDevice = new ConnectedDevice("Waiting for client to connect...", wfdDevice, null);
+                _connectedDevices.Add(connectedDevice);
+
+                var endpointPairs = wfdDevice.GetConnectionEndpointPairs();
+
+                _listenerSocket = null;
+                _listenerSocket = new StreamSocketListener();
+                _listenerSocket.ConnectionReceived += OnSocketConnectionReceived;
+                await _listenerSocket.BindEndpointAsync(endpointPairs[0].LocalHostName, Globals.strServerPort);
+
+                Debug.WriteLine("Devices connected on L2, listening on IP Address: " + endpointPairs[0].LocalHostName.ToString() +
+                                        " Port: " + Globals.strServerPort);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Connect operation threw an exception: " + ex.Message, "Error");
+            }
+        }
+
+        private async void OnSocketConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
+        {
+            Debug.WriteLine("Connecting to remote side on L4 layer...");
+            StreamSocket serverSocket = args.Socket;
+
+            try
+            {
+                SocketReaderWriter socketRw = new SocketReaderWriter(serverSocket);
+
+                //Run reading messages instance. Don't forget it
+                socketRw.ReadMessage();
+
+                while (true)
+                {
+                    string sessionId = socketRw.GetCurrentMessage();
+                    //waiting for message, when getting message breaking loop
+                    if (sessionId != null)
+                    {
+                        Debug.WriteLine("Connected with remote side on L4 layer");
+
+
+                        for (int idx = 0; idx < _connectedDevices.Count; idx++)
+                        {
+                            if (_connectedDevices[idx].DisplayName.Equals("Waiting for client to connect...") == true)
+                            {
+                                ConnectedDevice connectedDevice = _connectedDevices[idx];
+                                _connectedDevices.RemoveAt(idx);
+
+                                connectedDevice.DisplayName = sessionId;
+                                connectedDevice.SocketRW = socketRw;
+
+                                _connectedDevices.Add(connectedDevice);
+                                Debug.WriteLine("Connected with client : " + connectedDevice.DisplayName);
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    await Task.Delay(100);
                 }
             }
             catch (Exception ex)
             {
-                rootPage.NotifyUserFromBackground("Connect operation threw an exception: " + ex.Message, NotifyType.ErrorMessage);
+                Debug.WriteLine("Connection failed: " + ex.Message, "Error");
             }
         }
 

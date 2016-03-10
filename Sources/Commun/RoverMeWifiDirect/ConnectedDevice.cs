@@ -1,4 +1,10 @@
-﻿using SDKTemplate;
+﻿//*********************************************************
+//
+// Made by Abraham Jonathan
+//      04/02/2016
+//
+//*********************************************************
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +15,11 @@ using Windows.Devices.WiFiDirect;
 
 namespace RoverMeWifiDirect
 {
+    /**
+    ** To listen to comming messages,
+    ** Subscribe to the socketRW.ReceivedMessageEvent Event
+    */
+
     public class ConnectedDevice : INotifyPropertyChanged
     {
         private SocketReaderWriter socketRW;
