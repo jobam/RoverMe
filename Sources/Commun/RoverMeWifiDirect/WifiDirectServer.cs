@@ -18,6 +18,7 @@ using Windows.UI.Popups;
 using System.Collections.Generic;
 using System;
 using System.Diagnostics;
+using Windows.Devices.WiFiDirect.Services;
 
 namespace RoverMeWifiDirect
 {
@@ -44,6 +45,7 @@ namespace RoverMeWifiDirect
         WiFiDirectAdvertisementPublisher _publisher;
         WiFiDirectConnectionListener _listener;
         StreamSocketListener _listenerSocket;
+        public Page CallingPage { get; set; }
 
         #endregion
 
@@ -61,7 +63,9 @@ namespace RoverMeWifiDirect
             {
                 if (_publisher == null)
                 {
+                    WiFiDirectConfigurationMethod conf = WiFiDirectConfigurationMethod.ProvidePin;
                     _publisher = new WiFiDirectAdvertisementPublisher();
+                    _publisher.Advertisement.SupportedConfigurationMethods.Add(conf);
                 }
 
                 if (_listener == null)
@@ -98,8 +102,9 @@ namespace RoverMeWifiDirect
                 var wfdDeviceTask = tcsWiFiDirectDevice.Task;
 
                 //setting task actions
-
-                try
+                await CallingPage.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
+                {
+                    try
                 {
                         Debug.WriteLine("Connecting to " + connectionRequest.DeviceInformation.Name + "...");
 
@@ -115,6 +120,7 @@ namespace RoverMeWifiDirect
                     Debug.WriteLine("FromIdAsync task threw an exception: " + ex.Message, "Error");
                     throw;
                 }
+                });
 
                 // getting device
                 WiFiDirectDevice wfdDevice = await wfdDeviceTask;

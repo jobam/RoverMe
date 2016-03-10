@@ -30,7 +30,10 @@ namespace CommonLibraryTesting
 
         private void BtnStartServer_OnClick(object sender, RoutedEventArgs e)
         {
-           WifiDirectServer server = new WifiDirectServer();
+            WifiDirectServer server = new WifiDirectServer()
+            {
+                CallingPage = this
+            };
 
             server.StartServer();
         }
