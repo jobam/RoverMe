@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="RoverMe.Shared.Networks.Tests.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RoverMe.Shared.Networks.Tests"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,-775,-54">
+        <Button x:Name="serverButton" Content="Find Peers" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top" Click="serverButton_Click"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="46,45,0,0" VerticalAlignment="Top" Width="224" ItemsSource="{Binding}" DisplayMemberPath="DisplayName">
+
+        </ComboBox>
+        <Button x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Margin="152,158,0,0" VerticalAlignment="Top" Click="ConnectButton_OnClick"/>
+
+        <TextBlock x:Name="txtStatus" HorizontalAlignment="Left" Margin="296,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="209" Foreground="#FF0B7815"/>
+
+    </Grid>
+</Page>
