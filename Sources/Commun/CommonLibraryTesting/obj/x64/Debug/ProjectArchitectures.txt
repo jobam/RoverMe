@@ -1,0 +1,2 @@
+C:\Users\jonathan\Documents\projets\RoverMe\Sources\Commun\CommonLibraryTesting\CommonLibraryTesting.csproj;x64
+C:\Users\jonathan\Documents\projets\RoverMe\Sources\Commun\RoverMeWifiDirect\RoverMeWifiDirect.csproj;neutral

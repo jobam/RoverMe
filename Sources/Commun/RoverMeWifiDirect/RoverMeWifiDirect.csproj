@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BBC15D89-5A99-4FE1-8A8D-68EBB2BFD0E5}</ProjectGuid>
+    <ProjectGuid>{3F7234B3-00A0-4CFE-9EC0-66AE823ADA93}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RoverMeCommonLibrary</RootNamespace>
-    <AssemblyName>RoverMeCommonLibrary</AssemblyName>
+    <RootNamespace>RoverMeWifiDirect</RootNamespace>
+    <AssemblyName>RoverMeWifiDirect</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
@@ -107,9 +107,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IRoverMeCommand.cs" />
+    <Compile Include="WifiDirect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\RoverMeCommonLibrary.rd.xml" />
+    <EmbeddedResource Include="Properties\RoverMeWifiDirect.rd.xml" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
