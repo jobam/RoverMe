@@ -25,7 +25,10 @@ namespace TestX360Pad
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public static CoreDispatcher dispatcher;
+        private CoreDispatcher dispatcher;
+        private List<Gamepad> gamepadList = new List<Gamepad>();
+        private GamepadReading previousState;
+        
         public MainPage()
         {
             this.InitializeComponent();
@@ -33,12 +36,37 @@ namespace TestX360Pad
             statusBlock.Text = "No gamepad";
             
             Gamepad.GamepadAdded += Gamepad_GamepadAdded;
+            Gamepad.GamepadRemoved += Gamepad_GamepadRemoved;
+        }
 
+        private void Gamepad_GamepadRemoved(object sender, Gamepad e)
+        {
+            gamepadList.Remove(e);
+            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("removed"));
         }
 
         private void Gamepad_GamepadAdded(object sender, Gamepad e)
         {
+            gamepadList.Add(e);
             dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("added"));
+            //infinite loop
+            while (true)
+            {
+                if(e.GetCurrentReading().Buttons != previousState.Buttons || e.GetCurrentReading().LeftThumbstickX != previousState.LeftThumbstickX)
+                {
+                    previousState = e.GetCurrentReading();
+                    if (e.GetCurrentReading().Buttons == GamepadButtons.A)
+                    {
+                        dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("APRESS"));
+                    }
+                    if (e.GetCurrentReading().Buttons == GamepadButtons.B)
+                    {
+                        dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("BPRESS"));
+                    }
+                }
+            }
+            
+            
         }
         
         public void setStatusText(String status)
