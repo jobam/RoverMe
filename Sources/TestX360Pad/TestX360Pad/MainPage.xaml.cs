@@ -30,6 +30,7 @@ namespace TestX360Pad
         private CoreDispatcher loopDispatcher;
         private List<Gamepad> gamepadList = new List<Gamepad>();
         private GamepadReading previousState;
+        private Boolean isPadConnected;
         //EventWaitHandle ewh = new AutoResetEvent(false);
 
         public MainPage()
@@ -45,19 +46,20 @@ namespace TestX360Pad
         private void Gamepad_GamepadRemoved(object sender, Gamepad e)
         {
             gamepadList.Clear(); //should not be a problem if we want to use only one gamepad.
+            isPadConnected = false;
             dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("removed"));
         }
 
         private void Gamepad_GamepadAdded(object sender, Gamepad e)
         {
             gamepadList.Add(e);
-            
+            isPadConnected = true;
             dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("added"));
             //practically infinite loop
 
             Task loopGamepad = new Task(() =>
             {
-                while (true)
+                while (isPadConnected)
                 {
                     if (e.GetCurrentReading().Buttons != previousState.Buttons || e.GetCurrentReading().LeftThumbstickX != previousState.LeftThumbstickX)
                     {
