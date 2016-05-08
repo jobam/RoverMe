@@ -27,17 +27,14 @@ namespace TestX360Pad
     public sealed partial class MainPage : Page
     {
         private CoreDispatcher dispatcher;
-        private CoreDispatcher loopDispatcher;
-        private List<Gamepad> gamepadList = new List<Gamepad>();
         private GamepadReading previousState;
         private Boolean isPadConnected;
-        //EventWaitHandle ewh = new AutoResetEvent(false);
 
         public MainPage()
         {
             this.InitializeComponent();
             dispatcher = CoreWindow.GetForCurrentThread().Dispatcher;
-            statusBlock.Text = "No gamepad";
+            statusBlock.Text = "No gamepad connected";
             
             Gamepad.GamepadAdded += Gamepad_GamepadAdded;
             Gamepad.GamepadRemoved += Gamepad_GamepadRemoved;
@@ -45,17 +42,14 @@ namespace TestX360Pad
 
         private void Gamepad_GamepadRemoved(object sender, Gamepad e)
         {
-            gamepadList.Clear(); //should not be a problem if we want to use only one gamepad.
             isPadConnected = false;
             dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("removed"));
         }
 
         private void Gamepad_GamepadAdded(object sender, Gamepad e)
         {
-            gamepadList.Add(e);
             isPadConnected = true;
             dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("added"));
-            //practically infinite loop
 
             Task loopGamepad = new Task(() =>
             {
@@ -64,31 +58,83 @@ namespace TestX360Pad
                     if (e.GetCurrentReading().Buttons != previousState.Buttons || e.GetCurrentReading().LeftThumbstickX != previousState.LeftThumbstickX)
                     {
                         previousState = e.GetCurrentReading();
+                        /*
+                         * Buttons
+                         */
                         if (e.GetCurrentReading().Buttons == GamepadButtons.A)
                         {
-                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("APRESS"));
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("A PRESS"));
                         }
                         if (e.GetCurrentReading().Buttons == GamepadButtons.B)
                         {
-                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("BPRESS"));
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("B PRESS"));
+                        }
+                        /*
+                         * Directional Pad
+                         */
+                        if (e.GetCurrentReading().Buttons == GamepadButtons.DPadDown)
+                        {
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("Down Pad"));
+                        }
+                        if (e.GetCurrentReading().Buttons == GamepadButtons.DPadUp)
+                        {
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("Up Pad"));
+                        }
+                        if (e.GetCurrentReading().Buttons == GamepadButtons.DPadLeft)
+                        {
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("Left Pad"));
+                        }
+                        if (e.GetCurrentReading().Buttons == GamepadButtons.DPadRight)
+                        {
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("Right Pad"));
+                        }
+                        /*
+                         * Triggers Left/Right (gachettes)
+                         */
+                        if (e.GetCurrentReading().RightTrigger > 0.3)
+                        {
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("Right Trigger"));
+                        }
+                        if (e.GetCurrentReading().LeftTrigger > 0.3)
+                        {
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("Left Trigger"));
+                        }
+                        /*
+                         * Joysticks
+                         */
+                        if (e.GetCurrentReading().LeftThumbstickX != 0)
+                        {
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setJoystickLeftText("X: "+e.GetCurrentReading().LeftThumbstickX+"Y: "+e.GetCurrentReading().LeftThumbstickY));
+                        }
+                        if (e.GetCurrentReading().LeftThumbstickY != 0)
+                        {
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setJoystickLeftText("X: " + e.GetCurrentReading().LeftThumbstickX + "Y: " + e.GetCurrentReading().LeftThumbstickY));
+                        }
+                        if (e.GetCurrentReading().RightThumbstickX != 0)
+                        {
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setJoystickRightText("X: " + e.GetCurrentReading().RightThumbstickX + "Y: " + e.GetCurrentReading().RightThumbstickY));
+                        }
+                        if (e.GetCurrentReading().RightThumbstickY != 0)
+                        {
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setJoystickRightText("X: " + e.GetCurrentReading().RightThumbstickX + "Y: " + e.GetCurrentReading().RightThumbstickY));
                         }
                     }
-                }
+                 }
             }, TaskCreationOptions.LongRunning);
-            loopGamepad.Start();
-            
-            //System.Diagnostics.Debug.WriteLine("Gamepad unplugged end loop finish correctly.");
-            
-        }
-
-        private void Gamepad_GamepadRemoved1(object sender, Gamepad e)
-        {
-            throw new NotImplementedException();
+            loopGamepad.Start();            
         }
 
         public void setStatusText(String status)
         {
             statusBlock.Text = status;
+        }
+        public void setJoystickLeftText(String status)
+        {
+            statusJoystickLBlock.Text = status;
+        }
+        public void setJoystickRightText(String status)
+        {
+            statusJoystickRBlock.Text = status;
         }
     }
 }
