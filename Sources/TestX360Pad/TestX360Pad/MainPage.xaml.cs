@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Gaming.Input;
 using Windows.UI.Core;
 using System.Threading;
+using System.Threading.Tasks;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -26,9 +27,11 @@ namespace TestX360Pad
     public sealed partial class MainPage : Page
     {
         private CoreDispatcher dispatcher;
+        private CoreDispatcher loopDispatcher;
         private List<Gamepad> gamepadList = new List<Gamepad>();
         private GamepadReading previousState;
-        
+        //EventWaitHandle ewh = new AutoResetEvent(false);
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -41,34 +44,46 @@ namespace TestX360Pad
 
         private void Gamepad_GamepadRemoved(object sender, Gamepad e)
         {
-            gamepadList.Remove(e);
+            gamepadList.Clear(); //should not be a problem if we want to use only one gamepad.
             dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("removed"));
         }
 
         private void Gamepad_GamepadAdded(object sender, Gamepad e)
         {
             gamepadList.Add(e);
+            
             dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("added"));
-            //infinite loop
-            while (true)
+            //practically infinite loop
+
+            Task loopGamepad = new Task(() =>
             {
-                if(e.GetCurrentReading().Buttons != previousState.Buttons || e.GetCurrentReading().LeftThumbstickX != previousState.LeftThumbstickX)
+                while (true)
                 {
-                    previousState = e.GetCurrentReading();
-                    if (e.GetCurrentReading().Buttons == GamepadButtons.A)
+                    if (e.GetCurrentReading().Buttons != previousState.Buttons || e.GetCurrentReading().LeftThumbstickX != previousState.LeftThumbstickX)
                     {
-                        dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("APRESS"));
-                    }
-                    if (e.GetCurrentReading().Buttons == GamepadButtons.B)
-                    {
-                        dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("BPRESS"));
+                        previousState = e.GetCurrentReading();
+                        if (e.GetCurrentReading().Buttons == GamepadButtons.A)
+                        {
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("APRESS"));
+                        }
+                        if (e.GetCurrentReading().Buttons == GamepadButtons.B)
+                        {
+                            dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("BPRESS"));
+                        }
                     }
                 }
-            }
+            }, TaskCreationOptions.LongRunning);
+            loopGamepad.Start();
             
+            //System.Diagnostics.Debug.WriteLine("Gamepad unplugged end loop finish correctly.");
             
         }
-        
+
+        private void Gamepad_GamepadRemoved1(object sender, Gamepad e)
+        {
+            throw new NotImplementedException();
+        }
+
         public void setStatusText(String status)
         {
             statusBlock.Text = status;
