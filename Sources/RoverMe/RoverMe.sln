@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{76332FAB-DD37-4031-998E-BFEC9F132A53}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoverMe.Robot.Host.Tests", "RoverMe.Robot.Host.Tests\RoverMe.Robot.Host.Tests.csproj", "{723197DA-6FD8-433B-AAAB-7901AFD9441F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoverMe.Shared.Network.Tests", "RoverMe.Shared.Network.Tests\RoverMe.Shared.Network.Tests.csproj", "{631E830B-CBEA-4218-92EC-FCD2AF6EB702}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WifiConnectLibrary", "WifiConnectLibrary\WifiConnectLibrary.csproj", "{CE7F80DD-649E-4DD8-A77F-2834E623CD96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -161,6 +163,22 @@ Global
 		{631E830B-CBEA-4218-92EC-FCD2AF6EB702}.Release|x86.ActiveCfg = Release|x86
 		{631E830B-CBEA-4218-92EC-FCD2AF6EB702}.Release|x86.Build.0 = Release|x86
 		{631E830B-CBEA-4218-92EC-FCD2AF6EB702}.Release|x86.Deploy.0 = Release|x86
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Debug|ARM.ActiveCfg = Debug|ARM
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Debug|ARM.Build.0 = Debug|ARM
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Debug|x64.ActiveCfg = Debug|x64
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Debug|x64.Build.0 = Debug|x64
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Debug|x86.ActiveCfg = Debug|x86
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Debug|x86.Build.0 = Debug|x86
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Release|ARM.ActiveCfg = Release|ARM
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Release|ARM.Build.0 = Release|ARM
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Release|x64.ActiveCfg = Release|x64
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Release|x64.Build.0 = Release|x64
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Release|x86.ActiveCfg = Release|x86
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -172,5 +190,6 @@ Global
 		{0F394C26-5104-46E0-AD83-FFCE2E654F30} = {76332FAB-DD37-4031-998E-BFEC9F132A53}
 		{723197DA-6FD8-433B-AAAB-7901AFD9441F} = {5D545FA2-E8DD-47C2-9C46-32248347D1E7}
 		{631E830B-CBEA-4218-92EC-FCD2AF6EB702} = {76332FAB-DD37-4031-998E-BFEC9F132A53}
+		{CE7F80DD-649E-4DD8-A77F-2834E623CD96} = {76332FAB-DD37-4031-998E-BFEC9F132A53}
 	EndGlobalSection
 EndGlobal
