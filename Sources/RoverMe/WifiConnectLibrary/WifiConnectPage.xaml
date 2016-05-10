@@ -8,6 +8,12 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Name="btnQrCode" Click="btnQrCode_Click">QrCode</Button>
+        <StackPanel>
+            <TextBox Name="txtSSID" Text="SSID"/>
+            <TextBox Name="txtPassphrase" Text="Passphrase"/>
+            <Image Name="imgQrCode" Width="150" Height="150"></Image>
+            <Button Name="btnGenerateQrCode" Click="btnGenerateQrCode_Click">Generate QrCode</Button>
+            <Button Name="btnQrCode" Click="btnQrCode_Click">Connect</Button>
+        </StackPanel>
     </Grid>
 </Page>
