@@ -9,8 +9,8 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel>
-            <TextBox Name="txtSSID" Text="SSID"/>
-            <TextBox Name="txtPassphrase" Text="Passphrase"/>
+            <TextBox Name="txtSSID" Text="jonathan" />
+            <TextBox Name="txtPassphrase" Text="helloworld"/>
             <Image Name="imgQrCode" Width="150" Height="150"></Image>
             <Button Name="btnGenerateQrCode" Click="btnGenerateQrCode_Click">Generate QrCode</Button>
             <Button Name="btnQrCode" Click="btnQrCode_Click">Connect</Button>
