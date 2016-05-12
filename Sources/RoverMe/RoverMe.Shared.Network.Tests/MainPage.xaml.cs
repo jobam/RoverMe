@@ -43,15 +43,20 @@ namespace RoverMe.Shared.Network.Tests
             var hostname = server.Hostname;
         }
 
-        private void ClientConnected(DataReader arg1, DataWriter arg2)
+        private async void ClientConnected(DataReader arg1, DataWriter arg2)
         {
-            textBlock.Text = "Client connected !!!!";
-            server.StartListeningCommands();
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                textBlock.Text = "Client connected ! ";
+                });
+           await server.StartListeningCommands();
         }
 
-        private void commandrecevied(string command)
+        private async void commandrecevied(string command)
         {
-            textBlock.Text = command;
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                textBlock.Text = command;
+            });
         }
 
         private void btnConnect_Click(object sender, RoutedEventArgs e)

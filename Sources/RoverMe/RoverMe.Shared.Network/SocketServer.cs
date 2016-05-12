@@ -92,6 +92,8 @@ namespace RoverMe.Shared.Network
             Debug.WriteLine("Connection recevied", "Info");
 
             Reader = new DataReader(args.Socket.InputStream);
+            Reader.InputStreamOptions = InputStreamOptions.Partial;
+
             Writer = new DataWriter(args.Socket.OutputStream);
             ClientSocket = args.Socket;
             IsConnected = true;
@@ -103,19 +105,19 @@ namespace RoverMe.Shared.Network
 
         #region Methods
 
-        public async void StartListeningCommands()
+        public async Task StartListeningCommands()
         {
             Debug.WriteLine("Starting listening incomming commands");
 
-            await Task.Run(() =>
-           {
-               while (IsConnected)
-               {
-                   var datas = Reader.ReadString(sizeof(uint));
-                   if (datas != null)
-                       IncommingCommand?.Invoke(datas);
-               }
-           });
+            while (IsConnected)
+            {
+                // Read the string.
+                uint actualStringLength = await Reader.LoadAsync(4096);
+                var datas = Reader.ReadString(actualStringLength);
+                if (datas != null)
+                    IncommingCommand?.Invoke(datas);
+
+            }
         }
 
         #endregion
