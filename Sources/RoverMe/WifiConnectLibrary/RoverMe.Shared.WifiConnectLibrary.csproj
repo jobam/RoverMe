@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9C3041A8-6B6F-4821-A76E-181032FC25B4}</ProjectGuid>
+    <ProjectGuid>{CE7F80DD-649E-4DD8-A77F-2834E623CD96}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RoverMe.Shared.Network</RootNamespace>
-    <AssemblyName>RoverMe.Shared.Network</AssemblyName>
+    <RootNamespace>WifiConnectLibrary</RootNamespace>
+    <AssemblyName>WifiConnectLibrary</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
@@ -107,10 +107,17 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SocketClient.cs" />
-    <Compile Include="SocketServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\RoverMe.Shared.Network.rd.xml" />
+    <Compile Include="WifiConnectPage.xaml.cs">
+      <DependentUpon>WifiConnectPage.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\WifiConnectLibrary.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="WifiConnectPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

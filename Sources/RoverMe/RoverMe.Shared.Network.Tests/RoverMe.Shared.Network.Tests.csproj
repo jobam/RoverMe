@@ -126,6 +126,12 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RoverMe.Shared.Network\RoverMe.Shared.Network.csproj">
+      <Project>{9c3041a8-6b6f-4821-a76e-181032fc25b4}</Project>
+      <Name>RoverMe.Shared.Network</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

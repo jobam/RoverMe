@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Storage.Streams;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -27,56 +28,28 @@ namespace RoverMe.Shared.Network.Tests
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public List<PeerInformation> Peers { get; set; }
-        public WifiDirect WD { get; set; }
+        SocketServer server = new SocketServer("8080");
+
         public MainPage()
         {
-            this.InitializeComponent();
-            this.comboBox.DataContext = Peers;
-            this.Peers = new List<PeerInformation>();
-            WD = new WifiDirect(Write);
-            WD.ConnectedToDevice += ConnectedToDevice;
-            WD.Start();
+            InitializeComponent();
         }
 
-        private void BtnStartServer_OnClick(object sender, RoutedEventArgs e)
+        private void btnServer_Click(object sender, RoutedEventArgs e)
         {
+            server.ClientConnected += ClientConnected;
+            server.Start();
+            var hostname = server.Hostname;
         }
 
-        public async void Write(string message)
+        private void ClientConnected(DataReader arg1, DataWriter arg2)
         {
-            await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { txtStatus.Text = message; });
-            Debug.WriteLine(message);
-
+            textBlock.Text = "Client connected !!!!";
         }
 
-        private async void ConnectButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            var peer = comboBox.SelectedItem as PeerInformation;
-            if (peer != null)
-            {
-                try
-                {
-                    await WD.Connect(peer);
-                }
-                catch (Exception ex)
-                {
-
-                }
-            }
-        }
-
-        private async void serverButton_Click(object sender, RoutedEventArgs e)
+        private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
 
-            Peers = (await WD.FindPeersAsync()).ToList();
-            this.comboBox.DataContext = Peers;
         }
-
-        void ConnectedToDevice(StreamSocket stream)
-        {
-            Write("I Got The Stream !");
-        }
-
     }
 }
