@@ -38,6 +38,7 @@ namespace RoverMe.Shared.Network.Tests
         private void btnServer_Click(object sender, RoutedEventArgs e)
         {
             server.ClientConnected += ClientConnected;
+            server.IncommingCommand += commandrecevied;
             server.Start();
             var hostname = server.Hostname;
         }
@@ -45,11 +46,19 @@ namespace RoverMe.Shared.Network.Tests
         private void ClientConnected(DataReader arg1, DataWriter arg2)
         {
             textBlock.Text = "Client connected !!!!";
+            server.StartListeningCommands();
+        }
+
+        private void commandrecevied(string command)
+        {
+            textBlock.Text = command;
         }
 
         private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+
     }
 }

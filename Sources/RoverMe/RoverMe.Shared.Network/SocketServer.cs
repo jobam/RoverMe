@@ -20,6 +20,8 @@ namespace RoverMe.Shared.Network
         public DataReader Reader { get; private set; }
         public DataWriter Writer { get; set; }
         public StreamSocket ClientSocket { get; set; }
+        public bool IsConnected { get; set; }
+
 
         public string Hostname
         {
@@ -32,7 +34,7 @@ namespace RoverMe.Shared.Network
         #region Events
 
         public event Action<DataReader, DataWriter> ClientConnected;
-
+        public event Action<string> IncommingCommand;
 
         #endregion
 
@@ -92,8 +94,28 @@ namespace RoverMe.Shared.Network
             Reader = new DataReader(args.Socket.InputStream);
             Writer = new DataWriter(args.Socket.OutputStream);
             ClientSocket = args.Socket;
+            IsConnected = true;
 
             ClientConnected?.Invoke(Reader, Writer);
+        }
+
+        #endregion
+
+        #region Methods
+
+        public async void StartListeningCommands()
+        {
+            Debug.WriteLine("Starting listening incomming commands");
+
+            await Task.Run(() =>
+           {
+               while (IsConnected)
+               {
+                   var datas = Reader.ReadString(sizeof(uint));
+                   if (datas != null)
+                       IncommingCommand?.Invoke(datas);
+               }
+           });
         }
 
         #endregion
