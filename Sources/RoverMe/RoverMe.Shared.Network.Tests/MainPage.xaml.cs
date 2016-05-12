@@ -29,10 +29,12 @@ namespace RoverMe.Shared.Network.Tests
     public sealed partial class MainPage : Page
     {
         SocketServer server = new SocketServer("8080");
+        SocketClient client;
 
         public MainPage()
         {
             InitializeComponent();
+            client = new SocketClient(textBox.Text, "8080");
         }
 
         private void btnServer_Click(object sender, RoutedEventArgs e)
@@ -54,11 +56,15 @@ namespace RoverMe.Shared.Network.Tests
             textBlock.Text = command;
         }
 
-        private void btnConnect_Click(object sender, RoutedEventArgs e)
+        private async void btnConnect_Click(object sender, RoutedEventArgs e)
         {
+            await client.Connect();
 
         }
 
-
+        private async void btnSend_Click(object sender, RoutedEventArgs e)
+        {
+            await client.SendString("Hello");
+        }
     }
 }

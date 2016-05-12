@@ -10,7 +10,7 @@ using Windows.Storage.Streams;
 
 namespace RoverMe.Shared.Network
 {
-    class SocketClient : IDisposable
+    public class SocketClient : IDisposable
     {
         #region Attributes and Properties
 
@@ -46,7 +46,7 @@ namespace RoverMe.Shared.Network
 
         #region Methods
 
-        public async void Connect()
+        public async Task Connect()
         {
             Socket = new StreamSocket();
             Socket.Control.KeepAlive = true;
@@ -60,6 +60,8 @@ namespace RoverMe.Shared.Network
                 await Socket.ConnectAsync(hostname, Port);
 
                 Reader = new DataReader(Socket.InputStream);
+                Reader.InputStreamOptions = InputStreamOptions.Partial;
+
                 Writer = new DataWriter(Socket.OutputStream);
 
             }catch (Exception e)
@@ -67,6 +69,12 @@ namespace RoverMe.Shared.Network
                 Debug.WriteLine("Error While connecting to host: " + Host + " " + e.Message, "Error");
                 throw e;
             }
+        }
+
+        public async Task SendString(string message)
+        {
+            Writer.WriteString(message);
+           await  Writer.StoreAsync();
         }
 
         #endregion

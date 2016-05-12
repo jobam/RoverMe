@@ -10,8 +10,8 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,-775,-54">
         <Button x:Name="btnServer" Content="Start Server" HorizontalAlignment="Left" Margin="74,97,0,0" VerticalAlignment="Top" Click="btnServer_Click"/>
         <Button x:Name="btnConnect" Content="Connect" HorizontalAlignment="Left" Margin="246,107,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.331,-0.539" Click="btnConnect_Click"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="74,60,0,0" TextWrapping="Wrap" Text="localhost" VerticalAlignment="Top" RenderTransformOrigin="-2.12,-0.445" Width="283"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="74,60,0,0" TextWrapping="Wrap" Text="desktop-04s5p1g" VerticalAlignment="Top" RenderTransformOrigin="-2.12,-0.445" Width="283"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="638,97,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Foreground="Green"/>
-
+        <Button Name="btnSend" Click="btnSend_Click">Send</Button>
     </Grid>
 </Page>
