@@ -111,10 +111,6 @@
     <EmbeddedResource Include="Properties\RoverMe.Robot.Host.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RoverMe.Robot.RaspberryPi2\RoverMe.Robot.RaspberryPi2.csproj">
-      <Project>{3db1e9b8-12d7-41a3-9ecc-35e0dfe619cc}</Project>
-      <Name>RoverMe.Robot.RaspberryPi2</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RoverMe.Shared.Commands\RoverMe.Shared.Commands.csproj">
       <Project>{188db486-ab46-4d1d-ad19-9b0d752dae23}</Project>
       <Name>RoverMe.Shared.Commands</Name>
