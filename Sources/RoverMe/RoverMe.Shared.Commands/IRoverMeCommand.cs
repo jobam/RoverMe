@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoverMeCommonLibrary
+namespace RoverMe.Shared.Commands
 {
     public abstract class IRoverMeCommand
     {
