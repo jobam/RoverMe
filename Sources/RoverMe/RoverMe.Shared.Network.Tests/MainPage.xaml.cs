@@ -34,7 +34,9 @@ namespace RoverMe.Shared.Network.Tests
         public MainPage()
         {
             InitializeComponent();
-            client = new SocketClient(textBox.Text, "8080");
+            client = SocketClient.Instance;
+            client.Host = textBox.Text;
+            client.Port = "80";
         }
 
         private void btnServer_Click(object sender, RoutedEventArgs e)
