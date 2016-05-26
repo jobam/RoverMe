@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using RoverMe.Shared.Network;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,7 +17,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using ZXing.Mobile;
-using RoverMe.Shared.Commands;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -38,7 +36,6 @@ namespace WifiConnectLibrary
         }
 
         #endregion
-        private SocketClient socketClient;
 
         public WifiConnectPage()
         {

@@ -1,7 +1,18 @@
-﻿using RoverMe.Shared.Commands;
-using RoverMe.Shared.Network;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using WifiConnectLibrary;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -12,20 +23,14 @@ namespace RoverMe
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public ControllerCommand Controller { get; set; }
         public MainPage()
         {
             this.InitializeComponent();
-
         }
-
-
-        //socketClient = SocketClient.Instance
-        //        var controllerCommand = new ControllerCommand(socketClient);
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            Controller = new ControllerCommand(SocketClient.Instance);
+            Frame.Navigate(typeof(WifiConnectPage));
         }
     }
 }
