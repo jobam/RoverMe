@@ -127,6 +127,10 @@
       <Project>{3b4230de-5b5f-475d-b7ad-fc07f71e00b9}</Project>
       <Name>RoverMe.Robot.Host</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RoverMe.Shared.Commands\RoverMe.Shared.Commands.csproj">
+      <Project>{188db486-ab46-4d1d-ad19-9b0d752dae23}</Project>
+      <Name>RoverMe.Shared.Commands</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
