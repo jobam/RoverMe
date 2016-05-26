@@ -107,6 +107,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllerCommand.cs" />
     <Compile Include="IRoverMeCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MovementCommand.cs" />

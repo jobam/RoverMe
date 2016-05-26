@@ -13,7 +13,14 @@ namespace RoverMe.Shared.Network
     public class SocketClient : IDisposable
     {
         #region Attributes and Properties
-
+        private static readonly SocketClient instance = new SocketClient("localhost", "80");
+        public static SocketClient Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
         public string Host { get; set; }
         public string Port { get; set; }
         public StreamSocket Socket { get; set; }
@@ -24,7 +31,7 @@ namespace RoverMe.Shared.Network
 
         #region cycle
 
-        public SocketClient(string hostname, string port)
+        private SocketClient(string hostname, string port)
         {
             Host = hostname;
             Port = port;
