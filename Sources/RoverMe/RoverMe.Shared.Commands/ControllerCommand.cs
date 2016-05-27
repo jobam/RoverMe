@@ -38,7 +38,7 @@ namespace RoverMe.Shared.Commands
             isPadConnected = true;
             //dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => setStatusText("added"));
 
-            Task loopGamepad = new Task(() =>
+            Task loopGamepad = new Task(async () =>
             {
                 while (isPadConnected)
                 {
@@ -91,35 +91,35 @@ namespace RoverMe.Shared.Commands
                          */
                         if (e.GetCurrentReading().LeftThumbstickX != 0)
                         {
-                            if (e.GetCurrentReading().LeftThumbstickX > 0-SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickX < SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickY > SENSIBILITY_Y)
+                            if (e.GetCurrentReading().LeftThumbstickX > 0 - SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickX < SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickY > SENSIBILITY_Y)
                             {
                                 //Foward
-                                dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FowardCommand(null));
+                                await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FowardCommand(null));
                             }
                             if (e.GetCurrentReading().LeftThumbstickX < 0 - SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickY > SENSIBILITY_Y)
                             {
                                 //Foward Left
-                                dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FowardLeftCommand(new[] {e.GetCurrentReading().LeftThumbstickX.ToString(), e.GetCurrentReading().LeftThumbstickY.ToString()}));
+                                await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FowardLeftCommand(new[] { e.GetCurrentReading().LeftThumbstickX.ToString(), e.GetCurrentReading().LeftThumbstickY.ToString() }));
                             }
-                            if(e.GetCurrentReading().LeftThumbstickX > SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickY > SENSIBILITY_Y)
+                            if (e.GetCurrentReading().LeftThumbstickX > SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickY > SENSIBILITY_Y)
                             {
                                 //Foward Right
-                                dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FowardRightCommand(new[] { e.GetCurrentReading().LeftThumbstickX.ToString(), e.GetCurrentReading().LeftThumbstickY.ToString() }));
+                                await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FowardRightCommand(new[] { e.GetCurrentReading().LeftThumbstickX.ToString(), e.GetCurrentReading().LeftThumbstickY.ToString() }));
                             }
-                            if (e.GetCurrentReading().LeftThumbstickX > 0 - SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickX < SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickY < 0-SENSIBILITY_Y)
+                            if (e.GetCurrentReading().LeftThumbstickX > 0 - SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickX < SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickY < 0 - SENSIBILITY_Y)
                             {
                                 //Backward
-                                dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => BackwardCommand(new[] { e.GetCurrentReading().LeftThumbstickX.ToString(), e.GetCurrentReading().LeftThumbstickY.ToString() }));
+                                await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => BackwardCommand(new[] { e.GetCurrentReading().LeftThumbstickX.ToString(), e.GetCurrentReading().LeftThumbstickY.ToString() }));
                             }
-                            if (e.GetCurrentReading().LeftThumbstickX < 0-SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickY < 0-SENSIBILITY_Y)
+                            if (e.GetCurrentReading().LeftThumbstickX < 0 - SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickY < 0 - SENSIBILITY_Y)
                             {
                                 //Backward Left
-                                dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => BackwardLeftCommand(new[] { e.GetCurrentReading().LeftThumbstickX.ToString(), e.GetCurrentReading().LeftThumbstickY.ToString() }));
+                                await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => BackwardLeftCommand(new[] { e.GetCurrentReading().LeftThumbstickX.ToString(), e.GetCurrentReading().LeftThumbstickY.ToString() }));
                             }
-                            if(e.GetCurrentReading().LeftThumbstickX > SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickY < 0-SENSIBILITY_Y)
+                            if (e.GetCurrentReading().LeftThumbstickX > SENSIBILITY_X && e.GetCurrentReading().LeftThumbstickY < 0 - SENSIBILITY_Y)
                             {
                                 //Backward Right
-                                dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => BackwardRightCommand(new[] { e.GetCurrentReading().LeftThumbstickX.ToString(), e.GetCurrentReading().LeftThumbstickY.ToString() }));
+                                await dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => BackwardRightCommand(new[] { e.GetCurrentReading().LeftThumbstickX.ToString(), e.GetCurrentReading().LeftThumbstickY.ToString() }));
                             }
                         }
                         if (e.GetCurrentReading().LeftThumbstickY != 0)
