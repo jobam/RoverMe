@@ -39,7 +39,7 @@ namespace RoverMe.Robot.HostApp
             //MotorControl.MoveMotorsForTime(3000);
 
             GpioController gpio = GpioController.GetDefault();
-            var pin = gpio.OpenPin(4);
+            var pin = gpio.OpenPin(22);
             pin.SetDriveMode(GpioPinDriveMode.Output);
             while (true)
             {
