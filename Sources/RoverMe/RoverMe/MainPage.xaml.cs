@@ -78,5 +78,11 @@ namespace RoverMeClient
             
             //controllerCommand = socketClient.Connect.controllerCommand;
         }
+
+        private void commandInstanciation(SocketClient socketCl)
+        {
+            controllerCommand = new ControllerCommand(socketCl);
+            button1.Content = "Connecté au robot";
+        }
     }
 }
