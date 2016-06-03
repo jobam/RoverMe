@@ -145,6 +145,10 @@
       <Project>{188db486-ab46-4d1d-ad19-9b0d752dae23}</Project>
       <Name>RoverMe.Shared.Commands</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RoverMe.Shared.Network\RoverMe.Shared.Network.csproj">
+      <Project>{9C3041A8-6B6F-4821-A76E-181032FC25B4}</Project>
+      <Name>RoverMe.Shared.Network</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WifiConnectLibrary\WifiConnectLibrary.csproj">
       <Project>{ce7f80dd-649e-4dd8-a77f-2834e623cd96}</Project>
       <Name>WifiConnectLibrary</Name>
