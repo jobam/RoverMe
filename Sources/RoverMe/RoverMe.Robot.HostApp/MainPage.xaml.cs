@@ -30,10 +30,10 @@ namespace RoverMe.Robot.HostApp
         public MainPage()
         {
             this.InitializeComponent();
-            //TestMotors();
+            TestMotors();
         }
 
-        public void TestMotors()
+        public async void TestMotors()
         {
             //MotorControl.MotorsInit();
             //MotorControl.MoveMotorsForTime(3000);
@@ -41,7 +41,11 @@ namespace RoverMe.Robot.HostApp
             GpioController gpio = GpioController.GetDefault();
             var pin = gpio.OpenPin(4);
             pin.SetDriveMode(GpioPinDriveMode.Output);
-            pin.Write(GpioPinValue.High);
+            while (true)
+            {
+                pin.Write(GpioPinValue.High);
+               await Task.Delay(500);
+            }
 
             //while (true)
             //{
