@@ -75,8 +75,13 @@ namespace RoverMeClient
         private void connectionButton(object sender, RoutedEventArgs e)
         {
             socketClient = SocketClient.Instance;
-            
+            socketClient.ClientConnected += SocketClient_ClientConnected;
             //controllerCommand = socketClient.Connect.controllerCommand;
+        }
+
+        private void SocketClient_ClientConnected(SocketClient obj)
+        {
+            commandInstanciation(obj);
         }
 
         private void commandInstanciation(SocketClient socketCl)
