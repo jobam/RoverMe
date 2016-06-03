@@ -26,5 +26,10 @@ namespace RoverMeClient
         {
             this.InitializeComponent();
         }
+
+        private void forwardButton(System.Object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
