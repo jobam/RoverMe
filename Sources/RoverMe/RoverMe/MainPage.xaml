@@ -180,7 +180,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button x:Name="button_Copy2" Content="Haut" Margin="560,0,585,65" VerticalAlignment="Bottom"  Width="135" RenderTransformOrigin="0.5,0.464" HorizontalAlignment="Stretch" Height="42" BorderBrush="White" Foreground="Black">
+        <Button x:Name="button_Copy2" Content="Haut" Margin="560,0,585,65" VerticalAlignment="Bottom"  Width="135" RenderTransformOrigin="0.5,0.464" HorizontalAlignment="Stretch" Height="42" BorderBrush="White" Foreground="Black" Click="forwardButton">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
