@@ -29,6 +29,12 @@ namespace RoverMe.Shared.Network
 
         #endregion
 
+        #region Events
+
+        public event Action<SocketClient> ClientConnected;
+
+        #endregion
+
         #region cycle
 
         private SocketClient(string hostname, string port)
@@ -70,6 +76,8 @@ namespace RoverMe.Shared.Network
                 Reader.InputStreamOptions = InputStreamOptions.Partial;
 
                 Writer = new DataWriter(Socket.OutputStream);
+
+                ClientConnected?.Invoke(Instance);
 
             }catch (Exception e)
             {
