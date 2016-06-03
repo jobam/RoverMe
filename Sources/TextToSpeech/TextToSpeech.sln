@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextToSpeech", "TextToSpeech\TextToSpeech.csproj", "{47734A82-2098-4977-92DE-0D2FB5BCFE23}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Debug|ARM.ActiveCfg = Debug|ARM
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Debug|ARM.Build.0 = Debug|ARM
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Debug|ARM.Deploy.0 = Debug|ARM
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Debug|x64.ActiveCfg = Debug|x64
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Debug|x64.Build.0 = Debug|x64
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Debug|x64.Deploy.0 = Debug|x64
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Debug|x86.ActiveCfg = Debug|x86
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Debug|x86.Build.0 = Debug|x86
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Debug|x86.Deploy.0 = Debug|x86
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Release|ARM.ActiveCfg = Release|ARM
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Release|ARM.Build.0 = Release|ARM
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Release|ARM.Deploy.0 = Release|ARM
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Release|x64.ActiveCfg = Release|x64
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Release|x64.Build.0 = Release|x64
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Release|x64.Deploy.0 = Release|x64
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Release|x86.ActiveCfg = Release|x86
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Release|x86.Build.0 = Release|x86
+		{47734A82-2098-4977-92DE-0D2FB5BCFE23}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

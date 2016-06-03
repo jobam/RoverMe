@@ -1,0 +1,1 @@
+C:\Users\edian\Documents\Logiciels\Visual Studio 2015\Projects\TextToSpeech\TextToSpeech\TextToSpeech.csproj;x86
