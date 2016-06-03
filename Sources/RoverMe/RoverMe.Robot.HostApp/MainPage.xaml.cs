@@ -33,13 +33,15 @@ namespace RoverMe.Robot.HostApp
             //TestMotors();
         }
 
-        public async void TestMotors()
+        public void TestMotors()
         {
-            MotorControl.MotorsInit();
-            MotorControl.MoveMotorsForTime(3000);
+            //MotorControl.MotorsInit();
+            //MotorControl.MoveMotorsForTime(3000);
 
-            //GpioController gpio = GpioController.GetDefault();
-            //var pin = gpio.OpenPin(4);
+            GpioController gpio = GpioController.GetDefault();
+            var pin = gpio.OpenPin(4);
+            pin.SetDriveMode(GpioPinDriveMode.Output);
+            pin.Write(GpioPinValue.High);
 
             //while (true)
             //{

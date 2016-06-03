@@ -138,11 +138,11 @@ namespace RoverMe.Robot.HostApp
                     rightPwmPin = gpioController.OpenPin(RIGHT_PWM_PIN);
                     rightPwmPin.SetDriveMode(GpioPinDriveMode.Output);
 
-                    statusLedPin = gpioController.OpenPin(ACT_LED_PIN);
+                    //statusLedPin = gpioController.OpenPin(ACT_LED_PIN);
                     statusLedPin.SetDriveMode(GpioPinDriveMode.Output);
                     statusLedPin.Write(GpioPinValue.Low);
 
-                    sensorPin = gpioController.OpenPin(SENSOR_PIN);
+                    //sensorPin = gpioController.OpenPin(SENSOR_PIN);
                     sensorPin.SetDriveMode(GpioPinDriveMode.Input);
                     sensorPin.ValueChanged += (s, e) =>
                     {
