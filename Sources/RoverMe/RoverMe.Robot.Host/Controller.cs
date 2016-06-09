@@ -1,4 +1,5 @@
-﻿using RoverMe.Shared.Commands;
+﻿using RoverMe.Robot.HostApp;
+using RoverMe.Shared.Commands;
 using RoverMe.Shared.Network;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ namespace RoverMe.Robot.Host
         public DataReader Reader { get; private set; }
         public DataWriter Writer { get; private set; }
 
+        public MotorControl Motorcontroller { get; set; }
+
+        public int DefaultActionTime = 500; // milliseconds
+
         #endregion
 
         #region Cycle
@@ -27,6 +32,11 @@ namespace RoverMe.Robot.Host
         public Controller(string port = "4242")
         {
             this.ListeningPort = port;
+
+            //Running motor controller
+            Motorcontroller = new MotorControl();
+            Motorcontroller.Init();
+            Motorcontroller.RunFoward(500);
         }
 
         public void InitCommandServer()
@@ -130,7 +140,14 @@ namespace RoverMe.Robot.Host
 
         public override bool FowardCommand(string[] args)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Motorcontroller.RunFoward(DefaultActionTime);
+                return true;
+            }catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public override bool FowardLeftCommand(string[] args)
@@ -145,12 +162,28 @@ namespace RoverMe.Robot.Host
 
         public override bool LeftCommand(string[] args)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Motorcontroller.RunMotorLeft(DefaultActionTime);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public override bool RightCommand(string[] args)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Motorcontroller.RunMotorRight(DefaultActionTime);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public override bool SoundMessageCommand(string[] args)

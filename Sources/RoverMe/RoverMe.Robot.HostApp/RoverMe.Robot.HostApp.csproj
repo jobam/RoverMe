@@ -134,6 +134,12 @@
       <Name>Windows IoT Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RoverMe.Robot.Host\RoverMe.Robot.Host.csproj">
+      <Project>{3b4230de-5b5f-475d-b7ad-fc07f71e00b9}</Project>
+      <Name>RoverMe.Robot.Host</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
