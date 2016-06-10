@@ -32,6 +32,8 @@ namespace RoverMeClient
 
         }
 
+        #region Buttons
+
         private void forwardButton(System.Object sender, RoutedEventArgs e)
         {
             controllerCommand.FowardCommand(new[] {"1","1"});
@@ -72,22 +74,28 @@ namespace RoverMeClient
             controllerCommand.BackwardLeftCommand(new[] { "1", "1" });
         }
 
-        private void connectionButton(object sender, RoutedEventArgs e)
+        private async void connectionButton(object sender, RoutedEventArgs e)
         {
-            socketClient = SocketClient.Instance;
+            socketClient = new SocketClient("roverme", "4242");
             socketClient.ClientConnected += SocketClient_ClientConnected;
-            //controllerCommand = socketClient.Connect.controllerCommand;
+           await socketClient.Connect();
         }
 
-        private void SocketClient_ClientConnected(SocketClient obj)
+        #endregion
+
+        #region Events Catch
+
+        private void SocketClient_ClientConnected()
         {
-            commandInstanciation(obj);
+            commandInstanciation();
         }
 
-        private void commandInstanciation(SocketClient socketCl)
+        private void commandInstanciation()
         {
-            controllerCommand = new ControllerCommand(socketCl);
+            controllerCommand = new ControllerCommand(socketClient);
             button1.Content = "Connecté au robot";
         }
+
+        #endregion
     }
 }

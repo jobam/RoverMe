@@ -98,6 +98,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ControllerCommand.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -137,12 +138,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RoverMe.Robot.Host\RoverMe.Robot.Host.csproj">
-      <Project>{3b4230de-5b5f-475d-b7ad-fc07f71e00b9}</Project>
-      <Name>RoverMe.Robot.Host</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RoverMe.Shared.Commands\RoverMe.Shared.Commands.csproj">
-      <Project>{188db486-ab46-4d1d-ad19-9b0d752dae23}</Project>
+      <Project>{188DB486-AB46-4D1D-AD19-9B0D752DAE23}</Project>
       <Name>RoverMe.Shared.Commands</Name>
     </ProjectReference>
     <ProjectReference Include="..\RoverMe.Shared.Network\RoverMe.Shared.Network.csproj">

@@ -113,9 +113,9 @@
     <EmbeddedResource Include="Properties\RoverMe.Robot.Host.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RoverMe.Shared.Commands\RoverMe.Shared.Commands.csproj">
-      <Project>{188db486-ab46-4d1d-ad19-9b0d752dae23}</Project>
-      <Name>RoverMe.Shared.Commands</Name>
+    <ProjectReference Include="..\Roverme.Shared.Commands\Roverme.Shared.Commands.csproj">
+      <Project>{401490f2-c367-42b1-bb38-00b42bfde0ab}</Project>
+      <Name>Roverme.Shared.Commands</Name>
     </ProjectReference>
     <ProjectReference Include="..\RoverMe.Shared.Network\RoverMe.Shared.Network.csproj">
       <Project>{9c3041a8-6b6f-4821-a76e-181032fc25b4}</Project>

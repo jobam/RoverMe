@@ -57,7 +57,7 @@ namespace RoverMe.Robot.HostApp
             pinR3 = controller.OpenPin(motorR3);
             pinR1.SetDriveMode(GpioPinDriveMode.Output);
             pinR2.SetDriveMode(GpioPinDriveMode.Output);
-            pinR2.SetDriveMode(GpioPinDriveMode.Output);
+            pinR3.SetDriveMode(GpioPinDriveMode.Output);
         }
 
         #endregion
@@ -71,8 +71,6 @@ namespace RoverMe.Robot.HostApp
             pinL3.Write(GpioPinValue.High);
 
             await Task.Delay(milliseconds);
-            pinL1.Write(GpioPinValue.Low);
-            pinL2.Write(GpioPinValue.Low);
             pinL3.Write(GpioPinValue.Low);
         }
 
@@ -83,8 +81,6 @@ namespace RoverMe.Robot.HostApp
             pinR3.Write(GpioPinValue.High);
 
             await Task.Delay(milliseconds);
-            pinR1.Write(GpioPinValue.Low);
-            pinR2.Write(GpioPinValue.Low);
             pinR3.Write(GpioPinValue.Low);
         }
 

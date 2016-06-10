@@ -35,11 +35,10 @@ namespace RoverMe.Robot.Host
 
             //Running motor controller
             Motorcontroller = new MotorControl();
-            Motorcontroller.Init();
-            Motorcontroller.RunFoward(500);
+            Motorcontroller.RunFoward(DefaultActionTime * 2);
         }
 
-        public void InitCommandServer()
+        public void StartCommandServer()
         {
             ServerCommands = new SocketServer(this.ListeningPort);
             ServerCommands.ClientConnected += onClientConnected;

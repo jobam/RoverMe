@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoverMe.Robot.Host;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -27,16 +28,26 @@ namespace RoverMe.Robot.HostApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public Controller MainController { get; set; }
+
         public MainPage()
         {
             this.InitializeComponent();
-            TestMotors();
+            //TestMotors();
+            Launch();
         }
 
         public void TestMotors()
         {
             MotorControl controller = new MotorControl();
             controller.RunFoward(10000);
+
             }
+
+        public void Launch()
+        {
+            MainController = new Controller();
+            MainController.StartCommandServer();
+        }
     }
 }

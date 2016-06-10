@@ -1,4 +1,5 @@
-﻿using RoverMe.Shared.Network;
+﻿using RoverMe.Shared.Commands;
+using RoverMe.Shared.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 using Windows.Gaming.Input;
 using Windows.UI.Core;
 
-namespace RoverMe.Shared.Commands
+namespace RoverMeClient
 {
     public class ControllerCommand : IRoverMeCommand
     {
