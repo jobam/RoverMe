@@ -23,7 +23,7 @@ namespace RoverMe.Robot.Host
 
         public MotorControl Motorcontroller { get; set; }
 
-        public int DefaultActionTime = 500; // milliseconds
+        public int DefaultActionTime = 1000; // milliseconds
 
         #endregion
 
@@ -44,7 +44,7 @@ namespace RoverMe.Robot.Host
             ServerCommands.ClientConnected += onClientConnected;
             ServerCommands.IncommingCommand += onCommandRecieved;
 
-            Debug.WriteLine("Server Started on port: " + ListeningPort);
+            ServerCommands.Start();
         }
         
         #endregion
@@ -100,12 +100,13 @@ namespace RoverMe.Robot.Host
             Debug.WriteLine("Command Recieved: " + command, "Info");
         }
 
-        private void onClientConnected(DataReader reader, DataWriter writer)
+        private async void onClientConnected(DataReader reader, DataWriter writer)
         {
             this.Reader = reader;
             this.Writer = writer;
 
             Debug.WriteLine("Client connected", "Info");
+            await ServerCommands.StartListeningCommands();
         }
 
         #endregion
