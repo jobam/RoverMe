@@ -214,7 +214,7 @@ namespace RoverMeClient
 
         public override bool FowardCommand(string[] args)
         {
-            var message = IRoverMeCommand.RCommand.Foward.ToString();
+            var message = ((int)IRoverMeCommand.RCommand.Foward).ToString();
 
             try
             {
@@ -265,7 +265,7 @@ namespace RoverMeClient
 
         public override bool RightCommand(string[] args)
         {
-            throw new NotImplementedException();
+            return FowardCommand(args);
         }
 
         public override bool SoundMessageCommand(string[] args)
