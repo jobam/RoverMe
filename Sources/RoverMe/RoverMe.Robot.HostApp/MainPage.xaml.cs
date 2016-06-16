@@ -1,4 +1,5 @@
 ﻿using RoverMe.Robot.Host;
+using RoverMe.Shared.Network;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,6 +30,7 @@ namespace RoverMe.Robot.HostApp
     public sealed partial class MainPage : Page
     {
         public Controller MainController { get; set; }
+        public SocketServer Server { get; set; }
 
         public MainPage()
         {
