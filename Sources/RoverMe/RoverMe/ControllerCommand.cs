@@ -230,7 +230,7 @@ namespace RoverMeClient
 
         public override bool FowardLeftCommand(string[] args)
         {
-            var message = IRoverMeCommand.RCommand.FowardLeft.ToString();
+            var message = ((int)IRoverMeCommand.RCommand.FowardLeft).ToString();
 
             try
             {
@@ -245,7 +245,7 @@ namespace RoverMeClient
 
         public override bool FowardRightCommand(string[] args)
         {
-            var message = IRoverMeCommand.RCommand.FowardRight.ToString();
+            var message = ((int)IRoverMeCommand.RCommand.FowardRight).ToString();
 
             try
             {
@@ -260,12 +260,32 @@ namespace RoverMeClient
 
         public override bool LeftCommand(string[] args)
         {
-            throw new NotImplementedException();
+            var message = ((int)IRoverMeCommand.RCommand.Left).ToString();
+
+            try
+            {
+                Task.WaitAll(new[] { socketClient.SendString(message) });
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public override bool RightCommand(string[] args)
         {
-            return FowardCommand(args);
+            var message = ((int)IRoverMeCommand.RCommand.Right).ToString();
+
+            try
+            {
+                Task.WaitAll(new[] { socketClient.SendString(message) });
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public override bool SoundMessageCommand(string[] args)
