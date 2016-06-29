@@ -27,8 +27,13 @@
     <Capability Name="privateNetworkClientServer" />
     <Capability Name="internetClientServer" />
     <uap:Capability Name="enterpriseAuthentication" />
+    <uap:Capability Name="removableStorage" />
+    <uap:Capability Name="picturesLibrary" />
+    <uap:Capability Name="videosLibrary" />
+    <uap:Capability Name="voipCall" />
     <DeviceCapability Name="proximity" />
     <DeviceCapability Name="webcam" />
     <DeviceCapability Name="microphone" />
+    <DeviceCapability Name="location" />
   </Capabilities>
 </Package>

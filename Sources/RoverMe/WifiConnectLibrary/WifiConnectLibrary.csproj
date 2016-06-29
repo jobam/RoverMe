@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WifiConnectManager.cs" />
     <Compile Include="WifiConnectPage.xaml.cs">
       <DependentUpon>WifiConnectPage.xaml</DependentUpon>
     </Compile>

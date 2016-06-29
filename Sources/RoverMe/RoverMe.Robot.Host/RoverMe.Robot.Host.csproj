@@ -121,6 +121,10 @@
       <Project>{9c3041a8-6b6f-4821-a76e-181032fc25b4}</Project>
       <Name>RoverMe.Shared.Network</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WifiConnectLibrary\WifiConnectLibrary.csproj">
+      <Project>{CE7F80DD-649E-4DD8-A77F-2834E623CD96}</Project>
+      <Name>WifiConnectLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="WindowsIoT, Version=10.0.10586.0">

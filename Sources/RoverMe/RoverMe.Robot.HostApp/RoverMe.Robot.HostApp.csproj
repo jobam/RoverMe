@@ -147,6 +147,10 @@
       <Project>{9c3041a8-6b6f-4821-a76e-181032fc25b4}</Project>
       <Name>RoverMe.Shared.Network</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WifiConnectLibrary\WifiConnectLibrary.csproj">
+      <Project>{ce7f80dd-649e-4dd8-a77f-2834e623cd96}</Project>
+      <Name>WifiConnectLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

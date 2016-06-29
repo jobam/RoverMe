@@ -5,6 +5,7 @@ using Windows.Devices.Gpio;
 using System.Threading;
 using Windows.System.Threading;
 using System.Threading.Tasks;
+using WifiConnectLibrary;
 
 namespace RoverMe.Robot.HostApp
 {
@@ -20,6 +21,8 @@ namespace RoverMe.Robot.HostApp
         public static int motorR2 = 24;
         public static int motorR3 = 25;
 
+        public static int PushButton = 26;
+
         #endregion
 
         #region Attributes and Properties
@@ -33,6 +36,20 @@ namespace RoverMe.Robot.HostApp
         private GpioPin pinR1;
         private GpioPin pinR2;
         private GpioPin pinR3;
+
+        private GpioPin pinButton;
+
+        public event Action connectButtonEvent;
+
+        #endregion
+
+        #region Events Catch
+
+        private void PinButton_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs args)
+        {
+            connectButtonEvent?.Invoke();
+
+        }
 
         #endregion
 
@@ -58,6 +75,10 @@ namespace RoverMe.Robot.HostApp
             pinR1.SetDriveMode(GpioPinDriveMode.Output);
             pinR2.SetDriveMode(GpioPinDriveMode.Output);
             pinR3.SetDriveMode(GpioPinDriveMode.Output);
+
+            pinButton = controller.OpenPin(PushButton);
+            pinButton.SetDriveMode(GpioPinDriveMode.InputPullDown);
+            pinButton.ValueChanged += PinButton_ValueChanged;
         }
 
         #endregion

@@ -27,83 +27,31 @@ namespace WifiConnectLibrary
     /// </summary>
     public sealed partial class WifiConnectPage : Page
     {
-        #region keys
-
-        public class keys
-        {
-            public const string ssid = "ssid";
-            public const string passphrase = "passphrase";
-        }
-
-        #endregion
+        WifiConnectManager manager;
 
         public WifiConnectPage()
         {
             this.InitializeComponent();
+            manager = new WifiConnectManager();
         }
 
-        private async void btnQrCode_Click(object sender, RoutedEventArgs e)
+        private void btnQrCode_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                MobileBarcodeScanner sc = new MobileBarcodeScanner();
-                var scanResult = await sc.Scan();
-
-                var results = JsonConvert.DeserializeObject<Dictionary<string, string>>(scanResult.Text);
-                connectToNetwork(results[keys.ssid], results[keys.passphrase]);
-            }catch(Exception ex)
-            {
-                Debug.WriteLine(ex.Message, "Error");
-            }
-        }
-
-        private async void connectToNetwork(string ssid, string password)
-        {
-            try
-            {
-                var result = await Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(WiFiAdapter.GetDeviceSelector());
-                if (result.Count >= 1)
-                {
-                    var adapter = await WiFiAdapter.FromIdAsync(result[0].Id);
-                    await adapter.ScanAsync();
-
-                    var selectedNetwork = adapter.NetworkReport.AvailableNetworks.Where(x => x.Ssid == ssid).FirstOrDefault();
-                    if (selectedNetwork != null)
-                    {
-                        PasswordCredential credentials = new PasswordCredential();
-                        credentials.Password = password;
-                        await adapter.ConnectAsync(selectedNetwork, WiFiReconnectionKind.Automatic, credentials);
-                    }
-                }
-            }catch(Exception ex)
-            {
-                Debug.WriteLine(ex.Message, "Error");
-            }
+            manager.ConnectFromQrCode();
         }
 
         private void btnGenerateQrCode_Click(object sender, RoutedEventArgs e)
         {
-            //serialize values into JSon
-            string ssid = txtSSID.Text;
-            string passphrase = txtPassphrase.Text;
-            Dictionary<string, string> values = new Dictionary<string, string>();
-            values.Add(keys.ssid, ssid);
-            values.Add(keys.passphrase, passphrase);
-
-            string json = JsonConvert.SerializeObject(values);
-
-            // generate QR Code
-            ZXing.Mobile.BarcodeWriter writer = new ZXing.Mobile.BarcodeWriter()
-            {
-                Format = ZXing.BarcodeFormat.QR_CODE,
-                Options = new ZXing.Common.EncodingOptions
-                {
-                    Height = Int32.Parse(imgQrCode.Height.ToString()),
-                    Width = Int32.Parse(imgQrCode.Width.ToString())
-                }
-            };
-            var image = writer.Write(json);
-            imgQrCode.Source = image;
+            imgQrCode.Source = manager.GenerateQrCode(txtSSID.Text, txtPassphrase.Text, 
+                Int32.Parse(imgQrCode.Height.ToString()), 
+                Int32.Parse(imgQrCode.Width.ToString()));
         }
+
+        #region Open Methods
+
+        
+
+        #endregion
+
     }
 }
