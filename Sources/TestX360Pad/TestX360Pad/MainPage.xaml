@@ -1,0 +1,19 @@
+﻿<Page
+    x:Class="TestX360Pad.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestX360Pad"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="statusBlock" HorizontalAlignment="Left" Margin="206,108,0,0" TextWrapping="Wrap" Text="Waiting Event" VerticalAlignment="Top" Height="67" Width="817" FontSize="36"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="81,127,0,0" TextWrapping="Wrap" Text="Status: " VerticalAlignment="Top" Height="32" Width="51"/>
+        <TextBlock x:Name="statusJoystickLBlock" HorizontalAlignment="Left" Margin="206,232,0,0" TextWrapping="Wrap" Text="Waiting Event" VerticalAlignment="Top" Height="67" Width="817" FontSize="36"/>
+        <TextBlock x:Name="textBlock_JL" HorizontalAlignment="Left" Margin="81,251,0,0" TextWrapping="Wrap" Text="Joystick Left:" VerticalAlignment="Top" Height="32" Width="87"/>
+        <TextBlock x:Name="statusJoystickRBlock" HorizontalAlignment="Left" Margin="206,324,0,0" TextWrapping="Wrap" Text="Waiting Event" VerticalAlignment="Top" Height="67" Width="817" FontSize="36"/>
+        <TextBlock x:Name="textBlock_JR" HorizontalAlignment="Left" Margin="81,343,0,0" TextWrapping="Wrap" Text="Joystick Right:" VerticalAlignment="Top" Height="32" Width="101"/>
+
+    </Grid>
+</Page>
